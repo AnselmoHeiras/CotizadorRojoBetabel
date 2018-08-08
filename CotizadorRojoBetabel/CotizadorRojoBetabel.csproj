@@ -93,5 +93,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibreR\LibreR\LibreR.csproj">
+      <Project>{9459dac1-75b0-4674-9123-e254b8706aa1}</Project>
+      <Name>LibreR</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
