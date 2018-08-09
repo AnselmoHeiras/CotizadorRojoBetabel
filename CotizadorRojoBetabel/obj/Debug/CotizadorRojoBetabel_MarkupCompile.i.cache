@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\App.xaml
-11151548125
+3-524999931
 
-9426573155
-142009395998
-MainWindow.xaml;
+12769219940
+251452432786
+Views\MainView.xaml;Views\ParentView.xaml;Views\WaitView.xaml;
 
-True
+False
 
