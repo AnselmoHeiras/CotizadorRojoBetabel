@@ -22,6 +22,8 @@
 
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"></RowDefinition>
+                <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -31,7 +33,7 @@
 
             <Image x:Name="LogoImg" Source="/CotizadorRojoBetabel;component/Resources/Logo.png" Grid.Row="0"/>
 
-            <Button Name="ProductCatalogBtn" Content="Productos" Margin="5,15" Grid.Row="1" Style="{DynamicResource RBRoundCornerButton}" FontSize="16" Foreground="White">
+            <Button Name="ProductCatalogBtn" Content="Productos" Margin="5,15" Grid.Row="1" Style="{DynamicResource RBRoundCornerButton}" FontSize="16" Foreground="White" Click="ProductCatalogBtn_Click">
                 <Button.Effect>
                     <DropShadowEffect Opacity="0.4"/>
                 </Button.Effect>
@@ -43,7 +45,7 @@
                 </Button.Effect>
             </Button>
 
-            <Button Name="ConfigurationBtn" Content="Configuración" Margin="5,15" Grid.Row="4" Style="{DynamicResource RBRoundCornerButton}" FontSize="16" Foreground="White">
+            <Button Name="ConfigurationBtn" Content="Configuración" Margin="5,15" Grid.Row="6" Style="{DynamicResource RBRoundCornerButton}" FontSize="16" Foreground="White">
                 <Button.Effect>
                     <DropShadowEffect Opacity="0.4"/>
                 </Button.Effect>

@@ -66,5 +66,22 @@ namespace CotizadorRojoBetabel.Views
                 if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
             });
         }
+
+        internal static void Show_ProductsView()
+        {
+            Current.Dispatcher.Invoke(() => {
+                var oldView = Current.Transition.Content as UserControl;
+                var view = new ProductsView();
+                Current.Transition.Content = view;
+                ViewLoaded?.Invoke(view);
+                App.Log.Message($"ProductsView", "VIEW-LOADED");
+                if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
+            });
+        }
+
+        private void ProductCatalogBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Show_ProductsView();
+        }
     }
 }
