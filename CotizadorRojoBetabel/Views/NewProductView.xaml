@@ -26,8 +26,9 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition Height="0.5*"/>
                 <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
 
             <TextBlock Name="IndicationTbk" Text="Llene los campos para dar de alta un producto"
@@ -38,14 +39,14 @@
                 <TextBlock Name="ProductHeaderTbk" Text="Producto:" VerticalAlignment="Center"
                        FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
                 <TextBox Name="ProductTxt" VerticalAlignment="Center" FontSize="18"
-                         Foreground="{DynamicResource RBGrayForeground}"/>
+                         Foreground="{DynamicResource RBGrayForeground}" GotFocus="ProductTxt_GotFocus"/>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="3" Margin="10,0,10,0" Grid.ColumnSpan="3">
                 <TextBlock Name="CategoryHeaderTbk" Text="Categoría:" VerticalAlignment="Center"
                        FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
                 <ComboBox Name="CategoryCmb" VerticalAlignment="Center" FontSize="18"
-                         Foreground="{DynamicResource RBGrayForeground}"/>
+                         Foreground="{DynamicResource RBGrayForeground}" GotFocus="CategoryCmb_GotFocus"/>
             </StackPanel>
 
             <StackPanel Grid.Row="2" Margin="10,0,10,0" Grid.ColumnSpan="2">
@@ -57,7 +58,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <TextBox Name="PriceTxt" VerticalAlignment="Center" FontSize="18" Grid.Column="1"
-                         Foreground="{DynamicResource RBGrayForeground}" PreviewTextInput="PriceTxt_PreviewTextInput"/>
+                         Foreground="{DynamicResource RBGrayForeground}" PreviewTextInput="PriceTxt_PreviewTextInput" GotFocus="ProductTxt_GotFocus" TextChanged="PriceTxt_TextChanged"/>
                     <TextBlock Text="$" VerticalAlignment="Center" TextAlignment="Left"
                        FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
                 </Grid>
@@ -66,15 +67,15 @@
             <StackPanel Grid.Row="2" Grid.Column="3" Margin="10,0,10,0" Grid.ColumnSpan="3">
                 <TextBlock Name="UnitHeaderTbk" Text="Unidad de Medida:" VerticalAlignment="Center"
                        FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
-                <ComboBox Name="UnitCmb" VerticalAlignment="Center" FontSize="18"
+                <ComboBox Name="UnitCmb" VerticalAlignment="Center" FontSize="18" GotFocus="CategoryCmb_GotFocus"
                          Foreground="{DynamicResource RBGrayForeground}"/>
             </StackPanel>
 
             <StackPanel Grid.Row="3" Margin="10,0,10,0" Grid.ColumnSpan="2">
-                <TextBlock Name="InitialWeightHeaderTbk" Text="Peso Inicial:" VerticalAlignment="Center"
+                <TextBlock Name="WeightHeaderTbk" Text="Peso:" VerticalAlignment="Center"
                        FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
-                <TextBox Name="InitialWeightTxt" VerticalAlignment="Center" FontSize="18"
-                         Foreground="{DynamicResource RBGrayForeground}" PreviewTextInput="InitialWeightTxt_PreviewTextInput"/>
+                <TextBox Name="WeightTxt" VerticalAlignment="Center" FontSize="18"
+                         Foreground="{DynamicResource RBGrayForeground}" PreviewTextInput="InitialWeightTxt_PreviewTextInput" GotFocus="ProductTxt_GotFocus" TextChanged="WeightTxt_TextChanged"/>
             </StackPanel>
 
             <StackPanel Grid.Row="3" Grid.Column="3" Margin="10,0,10,0" Grid.ColumnSpan="3">
@@ -86,7 +87,7 @@
                         <ColumnDefinition Width="0.1*"/>
                     </Grid.ColumnDefinitions>
                     <TextBox Name="WasteTxt" VerticalAlignment="Center" FontSize="18"
-                         Foreground="{DynamicResource RBGrayForeground}" PreviewTextInput="WasteTxt_PreviewTextInput"/>
+                         Foreground="{DynamicResource RBGrayForeground}" PreviewTextInput="WasteTxt_PreviewTextInput" GotFocus="ProductTxt_GotFocus" TextChanged="WasteTxt_TextChanged"/>
                     <TextBlock Text="%" VerticalAlignment="Center" Grid.Column="1"
                        FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
                 </Grid>
@@ -101,40 +102,29 @@
                         <ColumnDefinition Width="0.1*"/>
                     </Grid.ColumnDefinitions>
                     <TextBox Name="YieldTxt" VerticalAlignment="Center" FontSize="18"
-                         Foreground="{DynamicResource RBGrayForeground}" PreviewTextInput="YieldTxt_PreviewTextInput"/>
+                         Foreground="{DynamicResource RBGrayForeground}" PreviewTextInput="YieldTxt_PreviewTextInput" Text="0" IsEnabled="False"/>
                     <TextBlock Text="%" VerticalAlignment="Center" Grid.Column="1"
-                       FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
+                       FontSize="18" FontWeight="Bold"/>
                 </Grid>
             </StackPanel>
 
-            <StackPanel Grid.Row="4" Grid.Column="3" Margin="10,0,10,0" Grid.ColumnSpan="3">
-                <TextBlock Name="YieldFactorHeaderTbk" Text="Factor de Rendimiento:" VerticalAlignment="Center"
-                       FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.05*"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox Name="YieldFactorTxt" VerticalAlignment="Center" FontSize="18" Grid.Column="1"
-                         Foreground="{DynamicResource RBGrayForeground}" PreviewTextInput="YieldFactorTxt_PreviewTextInput"/>
-                    <TextBlock Text="$" VerticalAlignment="Center" TextAlignment="Left"
-                       FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
-                </Grid>
-            </StackPanel>
+            <TextBlock Name="WarningTbk" Text="Verifique bien los campos" Grid.Row="5"
+                       Grid.ColumnSpan="6" TextAlignment="Center" VerticalAlignment="Center" FontSize="15"
+                       TextWrapping="Wrap" Foreground="#FFB41616" FontWeight="Bold" Visibility="Hidden">
+                <TextBlock.Triggers>
+                    <EventTrigger RoutedEvent="TextBlock.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                            Storyboard.TargetProperty="(TextBlock.Opacity)"
+                                            From="1" To="0" Duration="0:0:0.800" 
+                                            AutoReverse="True" RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </TextBlock.Triggers>
 
-            <StackPanel Grid.Row="5" Margin="10,0,10,0" Grid.ColumnSpan="2">
-                <TextBlock Name="FinalWeightHeaderTbk" Text="Peso Final:" VerticalAlignment="Center"
-                       FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
-                <TextBox Name="FinalWeightTxt" VerticalAlignment="Center" FontSize="18"
-                         Foreground="{DynamicResource RBGrayForeground}" PreviewTextInput="FinalWeightTxt_PreviewTextInput"/>
-            </StackPanel>
-
-            <StackPanel Grid.Row="5" Grid.Column="3" Margin="10,0,10,0" Grid.ColumnSpan="3">
-                <TextBlock Name="DrainWeightHeaderTbk" Text="Peso Drenado:" VerticalAlignment="Center"
-                       FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
-                <TextBox Name="DrainWeightTxt" VerticalAlignment="Center" FontSize="18"
-                         Foreground="{DynamicResource RBGrayForeground}" PreviewTextInput="DrainWeightTxt_PreviewTextInput"/>
-            </StackPanel>
+            </TextBlock>
 
             <StackPanel Grid.Row="6" Margin="10,0,10,0" Grid.ColumnSpan="2">
                 <TextBlock Name="CostHeaderTbk" Text="Costo:" VerticalAlignment="Center" TextAlignment="Center"

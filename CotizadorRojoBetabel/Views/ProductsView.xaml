@@ -40,7 +40,7 @@
 
             <TextBox x:Name="SearchTxt" FontSize="16" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1"
                      VerticalAlignment="Center" TextAlignment="Center"
-                     Foreground="{DynamicResource RBGrayForeground}"/>
+                     Foreground="{DynamicResource RBGrayForeground}" TextChanged="SearchTxt_TextChanged"/>
 
 
             <DataGrid x:Name="ProductsDgd" Style="{DynamicResource RBDataGridStyle}" Margin="10,0,0,20"
@@ -52,11 +52,11 @@
                 <fa:ImageAwesome Icon="Plus" Foreground="White" Margin="8"/>
             </Button>
             <Button Name="UpdateBtn" Margin="25,20,25,20" Style="{DynamicResource RBRedRoundCornerButton}"
-                    Grid.Column="5" Grid.Row="3" BorderBrush="{x:Null}">
+                    Grid.Column="5" Grid.Row="3" BorderBrush="{x:Null}" Click="UpdateBtn_Click">
                 <fa:ImageAwesome Icon="Refresh" Foreground="White" Margin="8"/>
             </Button>
             <Button Name="DeleteBtn" Margin="25,20,25,20" Style="{DynamicResource RBRedRoundCornerButton}"
-                    Grid.Column="5" Grid.Row="4" BorderBrush="{x:Null}">
+                    Grid.Column="5" Grid.Row="4" BorderBrush="{x:Null}" Click="DeleteBtn_Click">
                 <fa:ImageAwesome Icon="Minus" Foreground="White" Margin="8"/>
             </Button>
             <Button Name="PrintBtn" Margin="25,20,25,20" Style="{DynamicResource RBRedRoundCornerButton}"

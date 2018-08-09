@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CotizadorRojoBetabel.Models
 {
-    internal class Dishes
+    public class Dishes
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
@@ -30,7 +30,7 @@ namespace CotizadorRojoBetabel.Models
         public string Instructions { get; set; }
     }
 
-    internal enum DishesLine
+    public enum DishesLine
     {
         Fria,
         Caliente

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using CotizadorRojoBetabel.Models;
+using FontAwesome.WPF;
+using LibreR.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -70,6 +73,18 @@ namespace CotizadorRojoBetabel.Views
             });
         }
 
+        internal static void Show_MessageView(string message, Action affirmativeAction = null, string ABtnContent = null, Action negativeAction = null, string BBtnContent = null, FontAwesomeIcon icon = FontAwesomeIcon.None)
+        {
+            Current.Dispatcher.Invoke(() => {
+                var oldView = Current.Transition.Content as UserControl;
+                var view = new MessageView(message, affirmativeAction, ABtnContent, negativeAction, BBtnContent, icon);
+                Current.Transition.Content = view;
+                ViewLoaded?.Invoke(view);
+                App.Log.Message($"MessageView, Icon: {icon}, Message: {message}", "VIEW-LOADED");
+                if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
+            });
+        }
+
         internal static void Show_ProductsView()
         {
             Current.Dispatcher.Invoke(() => {
@@ -82,14 +97,14 @@ namespace CotizadorRojoBetabel.Views
             });
         }
 
-        internal static void Show_NewProductView()
+        internal static void Show_NewProductView(Products product = null)
         {
             Current.Dispatcher.Invoke(() => {
                 var oldView = Current.Transition.Content as UserControl;
-                var view = new NewProductView();
+                var view = new NewProductView(product);
                 Current.Transition.Content = view;
                 ViewLoaded?.Invoke(view);
-                App.Log.Message($"NewProductView", "VIEW-LOADED");
+                App.Log.Message($"NewProductView, Product: {product.Serialize(LibreR.Models.Enums.Serializer.OneLine)}", "VIEW-LOADED");
                 if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
             });
         }

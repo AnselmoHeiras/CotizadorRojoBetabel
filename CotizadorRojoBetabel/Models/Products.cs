@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CotizadorRojoBetabel.Models
 {
-    internal class Products
+    public class Products
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
@@ -20,23 +20,17 @@ namespace CotizadorRojoBetabel.Models
 
         public PackageUnit Unit { get; set; }
 
-        public decimal InitialWeight { get; set; }
+        public decimal Weight { get; set; }
 
         public decimal Waste { get; set; }
 
         public decimal Yield { get; set; }
 
-        public decimal YieldFactor { get; set; }
-
-        public decimal FinalWeight { get; set; }
-
-        public decimal DrainWeight { get; set; }
-
         public decimal Cost { get; set; }
 
     }
 
-    internal enum ProductCategory
+    public enum ProductCategory
     {
         Frutas,
         Verduras,
@@ -52,7 +46,7 @@ namespace CotizadorRojoBetabel.Models
         Varios
     }
 
-    internal enum PackageUnit
+    public enum PackageUnit
     {
         Kilogramos,
         Gramos,

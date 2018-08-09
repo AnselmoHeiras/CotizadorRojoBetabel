@@ -68,23 +68,14 @@ namespace CotizadorRojoBetabel.Views
                 case "Unit":
                     header = "Unidad";
                     break;
-                case "InitialWeight":
-                    header = "PesoInicial";
+                case "Weight":
+                    header = "Peso";
                     break;
                 case "Waste":
                     header = "%Merma";
                     break;
                 case "Yield":
                     header = "%Rendimiento";
-                    break;
-                case "YieldFactor":
-                    header = "FactorRend";
-                    break;
-                case "FinalWeight":
-                    header = "PesoFinal";
-                    break;
-                case "DrainWeight":
-                    header = "PesoDrenado";
                     break;
                 case "Cost":
                     header = "Costo";
@@ -103,6 +94,68 @@ namespace CotizadorRojoBetabel.Views
         {
 
             LoadColumns();
+        }
+
+        private void UpdateBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(ProductsDgd.SelectedItem is Products product)) return;
+            ParentView.Show_NewProductView(product);
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(ProductsDgd.SelectedItem is Products product)) return;
+            try
+            {
+                using (var db = App.DbFactory.Open())
+                {
+                    db.Delete(product);
+                }
+                ParentView.Show_MessageView("El producto se ha eliminado con éxito",
+                    //affirmative action
+                    delegate
+                    {
+                        ParentView.Show_ProductsView();
+                    },
+                    "Aceptar",
+                    //negative action
+                    null,
+                    null,
+                    FontAwesome.WPF.FontAwesomeIcon.CheckCircle
+                    );
+            }
+            catch (Exception)
+            {
+                ParentView.Show_MessageView("Hubo un problema al agregar el producto\nComuniquese a soporte técnico",
+                    //affirmative action
+                    delegate
+                    {
+                        ParentView.Show_ProductsView();
+                    },
+                    "Aceptar",
+                    //negative action
+                    null,
+                    null,
+                    FontAwesome.WPF.FontAwesomeIcon.ExclamationCircle
+                    );
+            }
+        }
+
+        private void SearchTxt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(SearchTxt.Text == "" || SearchTxt.Text == string.Empty)
+            {
+                ProductsDgd.ItemsSource = _productsOc;
+            }
+            else
+            {
+                var filteredList = from prod in _productsOc
+                                   where prod.Name.Contains(SearchTxt.Text)
+                                   select prod;
+
+                ProductsDgd.ItemsSource = filteredList;
+            }
+
         }
     }
 }
