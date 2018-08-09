@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\LYF Ingenieria\Desktop\Rojo Betabel\CotizadorRojoBetabel\CotizadorRojoBetabel\App.xaml
-4252015894
+5-1880099607
 
-15-798248247
+16477620593
 251772444610
-Views\MainView.xaml;Views\ParentView.xaml;Views\ProductsView.xaml;Views\WaitView.xaml;
+Views\MainView.xaml;Views\NewProductView.xaml;Views\ParentView.xaml;Views\ProductsView.xaml;Views\WaitView.xaml;
 
-False
+True
 

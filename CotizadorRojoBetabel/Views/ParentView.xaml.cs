@@ -58,6 +58,9 @@ namespace CotizadorRojoBetabel.Views
         internal static void Show_MainView()
         {
             Current.Dispatcher.Invoke(() => {
+                ParentView.Current.ProductCatalogBtn.IsEnabled = true;
+                ParentView.Current.DishesCatalogBtn.IsEnabled = true;
+                ParentView.Current.ConfigurationBtn.IsEnabled = true;
                 var oldView = Current.Transition.Content as UserControl;
                 var view = new MainView();
                 Current.Transition.Content = view;
@@ -78,6 +81,19 @@ namespace CotizadorRojoBetabel.Views
                 if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
             });
         }
+
+        internal static void Show_NewProductView()
+        {
+            Current.Dispatcher.Invoke(() => {
+                var oldView = Current.Transition.Content as UserControl;
+                var view = new NewProductView();
+                Current.Transition.Content = view;
+                ViewLoaded?.Invoke(view);
+                App.Log.Message($"NewProductView", "VIEW-LOADED");
+                if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
+            });
+        }
+
 
         private void ProductCatalogBtn_Click(object sender, RoutedEventArgs e)
         {

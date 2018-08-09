@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:CotizadorRojoBetabel.Views"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="CotizadorRojoBetabel.Views.ProductsView"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Border CornerRadius="40">
         <Border.Background>
             <SolidColorBrush Color="White" Opacity="0.8"/>
@@ -47,7 +47,7 @@
                       Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="4" ScrollViewer.CanContentScroll="False"/>
 
             <Button Name="AddBtn" Margin="25,20,25,20" Style="{DynamicResource RBRedRoundCornerButton}"
-                    Grid.Column="4" Grid.Row="2" BorderBrush="{x:Null}">
+                    Grid.Column="4" Grid.Row="2" BorderBrush="{x:Null}" Click="AddBtn_Click">
                 <fa:ImageAwesome Icon="Plus" Foreground="White" Margin="8"/>
             </Button>
             <Button Name="UpdateBtn" Margin="25,20,25,20" Style="{DynamicResource RBRedRoundCornerButton}"

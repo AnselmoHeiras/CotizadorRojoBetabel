@@ -30,7 +30,6 @@ namespace CotizadorRojoBetabel.Views
         public ProductsView()
         {
             InitializeComponent();
-            LoadColumns();
         }
 
         private void LoadColumns()
@@ -63,6 +62,9 @@ namespace CotizadorRojoBetabel.Views
                 case "Category":
                     header = "Categoría";
                     break;
+                case "Price":
+                    header = "Precio";
+                    break;
                 case "Unit":
                     header = "Unidad";
                     break;
@@ -90,6 +92,17 @@ namespace CotizadorRojoBetabel.Views
             }
 
             e.Column.Header = header;
+        }
+
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ParentView.Show_NewProductView();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            LoadColumns();
         }
     }
 }

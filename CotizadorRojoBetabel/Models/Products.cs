@@ -16,6 +16,8 @@ namespace CotizadorRojoBetabel.Models
 
         public ProductCategory Category { get; set; }
 
+        public decimal Price { get; set; }
+
         public PackageUnit Unit { get; set; }
 
         public decimal InitialWeight { get; set; }
