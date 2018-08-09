@@ -31,6 +31,24 @@
 
             <Image x:Name="LogoImg" Source="/CotizadorRojoBetabel;component/Resources/Logo.png" Grid.Row="0"/>
 
+            <Button Name="ProductCatalogBtn" Content="Productos" Margin="5,15" Grid.Row="1" Style="{DynamicResource RBRoundCornerButton}" FontSize="16" Foreground="White">
+                <Button.Effect>
+                    <DropShadowEffect Opacity="0.4"/>
+                </Button.Effect>
+            </Button>
+
+            <Button Name="DishesCatalogBtn" Content="Platillos" Margin="5,15" Grid.Row="2" Style="{DynamicResource RBRoundCornerButton}" FontSize="16" Foreground="White">
+                <Button.Effect>
+                    <DropShadowEffect Opacity="0.4"/>
+                </Button.Effect>
+            </Button>
+
+            <Button Name="ConfigurationBtn" Content="Configuración" Margin="5,15" Grid.Row="4" Style="{DynamicResource RBRoundCornerButton}" FontSize="16" Foreground="White">
+                <Button.Effect>
+                    <DropShadowEffect Opacity="0.4"/>
+                </Button.Effect>
+            </Button>
+
         </Grid>
 
         <controls:TransitioningContentControl 

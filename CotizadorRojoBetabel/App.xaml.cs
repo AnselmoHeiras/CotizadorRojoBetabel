@@ -67,6 +67,40 @@ namespace CotizadorRojoBetabel
                     DateFormatString = "yyyy-MM-dd HH:mm:ss"
                 };
 
+                // load config file
+                var configFile = new FileInfo("config.json");
+
+                if (!Directory.Exists(configFile.DirectoryName))
+                {
+                    Directory.CreateDirectory(configFile.DirectoryName);
+                }
+
+                if (File.Exists(configFile.FullName))
+                {
+                    Config.Current = configFile.ReadAllText().Deserialize<Config>();
+                }
+
+                configFile.WriteAllText(Config.Current.Serialize());
+                Log.Message(Config.Current.Serialize(LibreR.Models.Enums.Serializer.OneLine), "CONFIGURATION");
+                
+
+                // create database directory
+                var path = $"{Directory.GetCurrentDirectory()}\\Data";
+                try
+                {
+                    // Determine whether the directory exists.
+                    if (!Directory.Exists(path))
+                    {
+                        // Try to create the directory.
+                        DirectoryInfo di = Directory.CreateDirectory(path);
+                        Log.Message($"The directory was created successfully at {Directory.GetCreationTime(path)}.", "DATABASE-DIRECTORY");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Message($"The directory creation failed: \n{ex.Serialize()}.", "DATABASE-DIRECTORY");
+                }
+
                 // load-create database
                 var database = $"{Directory.GetCurrentDirectory()}\\Data\\local.db";
                 if (!File.Exists(database))
@@ -80,7 +114,11 @@ namespace CotizadorRojoBetabel
                 using (var db = DbFactory.Open())
                 {
                     db.CreateTableIfNotExists<Products>();
+                    db.CreateTableIfNotExists<Dishes>();
                 }
+
+                //load MainView
+                ParentView.Show_MainView();
             });
         }
     }
