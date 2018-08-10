@@ -1,5 +1,7 @@
-﻿using CotizadorRojoBetabel.Models;
+﻿using CotizadorRojoBetabel.Controllers;
+using CotizadorRojoBetabel.Models;
 using LibreR.Controllers;
+using Microsoft.Win32;
 using ServiceStack.OrmLite;
 using System;
 using System.Collections.Generic;
@@ -69,7 +71,7 @@ namespace CotizadorRojoBetabel.Views
                     header = "Unidad";
                     break;
                 case "Weight":
-                    header = "Peso";
+                    header = "Peso/Cantidad";
                     break;
                 case "Waste":
                     header = "%Merma";
@@ -156,6 +158,49 @@ namespace CotizadorRojoBetabel.Views
                 ProductsDgd.ItemsSource = filteredList;
             }
 
+        }
+
+        private void PrintBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog
+            {
+                Filter = "PDF file (*.pdf)|*.pdf"
+            };
+            if (saveDialog.ShowDialog() == true)
+            {
+                var s = saveDialog.FileName;
+                var fileCreated = DocumentsCreator.ProductsList(_productsOc, saveDialog.FileName);
+                if (fileCreated)
+                {
+                    ParentView.Show_MessageView("El documento ha sido creado con éxito",
+                        //affirmative action
+                        delegate
+                        {
+                            ParentView.Show_ProductsView();
+                        },
+                        "Aceptar",
+                        //negative action
+                        null,
+                        null,
+                        FontAwesome.WPF.FontAwesomeIcon.CheckCircle
+                        );
+                }
+                else
+                {
+                    ParentView.Show_MessageView("Hubo un problema al crear el documento\nComuniquese a soporte técnico",
+                    //affirmative action
+                    delegate
+                    {
+                        ParentView.Show_ProductsView();
+                    },
+                    "Aceptar",
+                    //negative action
+                    null,
+                    null,
+                    FontAwesome.WPF.FontAwesomeIcon.ExclamationCircle
+                    );
+                }
+            }
         }
     }
 }

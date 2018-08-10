@@ -99,3 +99,6 @@ C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\
 C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\ProductsView.baml
 C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\MessageView.g.cs
 C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\MessageView.baml
+C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\bin\Debug\Resources\LogoSmall.png
+C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\bin\Debug\itextsharp.dll
+C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\bin\Debug\itextsharp.xml

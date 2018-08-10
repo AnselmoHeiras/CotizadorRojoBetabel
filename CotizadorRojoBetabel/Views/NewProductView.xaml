@@ -72,7 +72,7 @@
             </StackPanel>
 
             <StackPanel Grid.Row="3" Margin="10,0,10,0" Grid.ColumnSpan="2">
-                <TextBlock Name="WeightHeaderTbk" Text="Peso:" VerticalAlignment="Center"
+                <TextBlock Name="WeightHeaderTbk" Text="Peso / Cantidad:" VerticalAlignment="Center"
                        FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
                 <TextBox Name="WeightTxt" VerticalAlignment="Center" FontSize="18"
                          Foreground="{DynamicResource RBGrayForeground}" PreviewTextInput="InitialWeightTxt_PreviewTextInput" GotFocus="ProductTxt_GotFocus" TextChanged="WeightTxt_TextChanged"/>
