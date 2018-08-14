@@ -93,7 +93,7 @@ namespace CotizadorRojoBetabel.Views
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            ParentView.Show_NewDishView();
         }
 
         private void UpdateBtn_Click(object sender, RoutedEventArgs e)

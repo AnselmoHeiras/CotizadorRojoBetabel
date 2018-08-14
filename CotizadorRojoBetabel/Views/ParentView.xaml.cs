@@ -122,6 +122,17 @@ namespace CotizadorRojoBetabel.Views
             });
         }
 
+        internal static void Show_NewDishView()
+        {
+            Current.Dispatcher.Invoke(() => {
+                var oldView = Current.Transition.Content as UserControl;
+                var view = new NewDish();
+                Current.Transition.Content = view;
+                ViewLoaded?.Invoke(view);
+                App.Log.Message($"NewDishView", "VIEW-LOADED");
+                if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
+            });
+        }
 
         private void ProductCatalogBtn_Click(object sender, RoutedEventArgs e)
         {

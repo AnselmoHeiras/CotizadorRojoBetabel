@@ -104,3 +104,12 @@ C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\bin\Debug\
 C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\bin\Debug\itextsharp.xml
 C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\DishesView.g.cs
 C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\DishesView.baml
+C:\Users\LYF Ingenieria\Desktop\Rojo Betabel\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\DishesView.g.cs
+C:\Users\LYF Ingenieria\Desktop\Rojo Betabel\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\MessageView.g.cs
+C:\Users\LYF Ingenieria\Desktop\Rojo Betabel\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\NewDish.g.cs
+C:\Users\LYF Ingenieria\Desktop\Rojo Betabel\CotizadorRojoBetabel\CotizadorRojoBetabel\bin\Debug\Resources\LogoSmall.png
+C:\Users\LYF Ingenieria\Desktop\Rojo Betabel\CotizadorRojoBetabel\CotizadorRojoBetabel\bin\Debug\itextsharp.dll
+C:\Users\LYF Ingenieria\Desktop\Rojo Betabel\CotizadorRojoBetabel\CotizadorRojoBetabel\bin\Debug\itextsharp.xml
+C:\Users\LYF Ingenieria\Desktop\Rojo Betabel\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\DishesView.baml
+C:\Users\LYF Ingenieria\Desktop\Rojo Betabel\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\MessageView.baml
+C:\Users\LYF Ingenieria\Desktop\Rojo Betabel\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\NewDish.baml

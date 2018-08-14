@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CotizadorRojoBetabel.Models;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +27,22 @@ namespace CotizadorRojoBetabel.Views
             InitializeComponent();
         }
 
+        private class IngredientsTable
+        {
+            public string Name { get; set; }
+
+            public PackageUnit Unit { get; set; }
+
+            public decimal Weight { get; set; }
+
+            public decimal Cost { get; set; }
+        }
+
+        private void LoadColumns()
+        {
+
+        }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -41,6 +59,54 @@ namespace CotizadorRojoBetabel.Views
         }
 
         private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            var descriptor = (PropertyDescriptor)e.PropertyDescriptor;
+            var header = string.Empty;
+            switch (descriptor.DisplayName)
+            {
+                case "Name":
+                    header = "Platillo";
+                    break;
+                case "Unit":
+                    header = "Unidad";
+                    break;
+                case "Weight":
+                    header = "Pso-Cant.";
+                    break;
+                case "Cost":
+                    header = "Costo";
+                    break;
+            }
+
+            e.Column.Header = header;
+        }
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CleanBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ImgBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PortionsTxt_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
+        }
+
+        private void PortionsTxt_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }

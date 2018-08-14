@@ -54,11 +54,25 @@
                 <TextBlock Name="IngredientsHeaderTbk" Text="Ingredientes:" VerticalAlignment="Center"
                        FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
                 <Grid>
-                    <DataGrid x:Name="IngredientsDgd" Style="{DynamicResource RBDataGridStyle}" Margin="10,0,10,0"
+                    <DataGrid x:Name="IngredientsDgd" Style="{DynamicResource RBDataGridStyle}" Margin="0,0,10,0"
                       AutoGeneratingColumn="OnAutoGeneratingColumn" BorderBrush="{x:Null}" Grid.Column="0"
                       Grid.Row="2" Grid.ColumnSpan="5" Grid.RowSpan="4" ScrollViewer.CanContentScroll="False"/>
                 </Grid>
             </StackPanel>
+            <Button Name="AddIngredientBtn" Margin="0,10,10,10" Style="{DynamicResource RBGreenRoundCornerButton}"
+                    Grid.Column="2" Grid.Row="2" BorderBrush="{x:Null}" Click="SaveBtn_Click">
+                <fa:ImageAwesome Icon="Plus" Foreground="White" Margin="8"/>
+            </Button>
+
+            <Button Name="UpdateIngredientBtn" Margin="0,10,10,10" Style="{DynamicResource RBGreenRoundCornerButton}"
+                    Grid.Column="2" Grid.Row="3" BorderBrush="{x:Null}" Click="CleanBtn_Click">
+                <fa:ImageAwesome Icon="Refresh" Foreground="White" Margin="8"/>
+            </Button>
+
+            <Button Name="DeleteIngredientBtn" Margin="0,10,10,10" Style="{DynamicResource RBGreenRoundCornerButton}"
+                    Grid.Column="2" Grid.Row="4" BorderBrush="{x:Null}" Click="CancelBtn_Click">
+                <fa:ImageAwesome Icon="Minus" Foreground="White" Margin="8"/>
+            </Button>
 
             <StackPanel Grid.Row="1" Grid.Column="3" Margin="0,0,10,0" Grid.ColumnSpan="2">
                 <TextBlock Name="PortionsHeaderTbk" Text="Porciones:" VerticalAlignment="Center"
@@ -71,13 +85,20 @@
                 <TextBlock Name="ImageHeaderTbk" Text="Boceto:" VerticalAlignment="Center"
                        FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
                 <Grid Margin="0,0,70,0">
-                    <Button Name="SaveBtdfn" Style="{DynamicResource RBRedRoundCornerButton}"
-                     BorderBrush="{x:Null}" Click="SaveBtn_Click">
+                    <Button Name="ImgBtn" Style="{DynamicResource RBBlueRoundCornerButton}"
+                     BorderBrush="{x:Null}" Click="ImgBtn_Click">
                         <fa:ImageAwesome Icon="Image" Foreground="White" Margin="8"/>
                     </Button>
                 </Grid>
             </StackPanel>
             <Image Name="ImageImg" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="3" Margin="0,0,10,0"/>
+
+            <StackPanel Grid.Row="3" Grid.Column="3" Margin="0,0,10,0" Grid.ColumnSpan="4" Grid.RowSpan="2">
+                <TextBlock Name="InstructionsHeaderTbk" Text="Preparación:" VerticalAlignment="Center"
+                       FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
+                <TextBox Name="InstructionsTxt" VerticalAlignment="Stretch" FontSize="12" TextWrapping="Wrap" AcceptsReturn="True"
+                         Foreground="{DynamicResource RBGrayForeground}" SpellCheck.IsEnabled="True" VerticalScrollBarVisibility="Auto" Height="110"/>
+            </StackPanel>
 
 
             <TextBlock Name="WarningTbk" Text="Verifique bien los campos" Grid.Row="5"
