@@ -96,12 +96,19 @@
     <Compile Include="Controllers\DocumentsCreator.cs" />
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\Dishes.cs" />
+    <Compile Include="Models\Ingredients.cs" />
     <Compile Include="Models\Products.cs" />
+    <Compile Include="Views\DishesView.xaml.cs">
+      <DependentUpon>DishesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MessageView.xaml.cs">
       <DependentUpon>MessageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewDish.xaml.cs">
+      <DependentUpon>NewDish.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewProductView.xaml.cs">
       <DependentUpon>NewProductView.xaml</DependentUpon>
@@ -119,11 +126,19 @@
     <Compile Include="Views\WaitView.xaml.cs">
       <DependentUpon>WaitView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\DishesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MessageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewDish.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

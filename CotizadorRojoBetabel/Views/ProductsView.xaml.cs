@@ -111,7 +111,7 @@ namespace CotizadorRojoBetabel.Views
             {
                 using (var db = App.DbFactory.Open())
                 {
-                    db.Delete(product);
+                  db.Delete(product);
                 }
                 ParentView.Show_MessageView("El producto se ha eliminado con éxito",
                     //affirmative action

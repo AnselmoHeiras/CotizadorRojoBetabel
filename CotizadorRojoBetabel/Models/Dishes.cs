@@ -18,9 +18,7 @@ namespace CotizadorRojoBetabel.Models
 
         public int Portions { get; set; }
 
-        public Products[] Ingredients { get; set; }
-
-        public decimal Quantity { get; set; }
+        public Ingredients[] Ingredients { get; set; }
 
         [CustomField("BLOB")]
         public byte[] Draw { get; set; }

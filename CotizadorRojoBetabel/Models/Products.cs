@@ -49,8 +49,7 @@ namespace CotizadorRojoBetabel.Models
     public enum PackageUnit
     {
         Kilogramos,
-        Gramos,
-        Mililitros,
+        Litros,
         Piezas
     }
 }

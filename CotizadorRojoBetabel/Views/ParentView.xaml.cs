@@ -1,6 +1,7 @@
 ﻿using CotizadorRojoBetabel.Models;
 using FontAwesome.WPF;
 using LibreR.Controllers;
+using ServiceStack.OrmLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,10 +110,39 @@ namespace CotizadorRojoBetabel.Views
             });
         }
 
+        internal static void Show_DishesView(List<Dishes> dishes)
+        {
+            Current.Dispatcher.Invoke(() => {
+                var oldView = Current.Transition.Content as UserControl;
+                var view = new DishesView(dishes);
+                Current.Transition.Content = view;
+                ViewLoaded?.Invoke(view);
+                App.Log.Message($"DishesView, Dishes: {dishes.Serialize(LibreR.Models.Enums.Serializer.OneLine)}", "VIEW-LOADED");
+                if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
+            });
+        }
+
 
         private void ProductCatalogBtn_Click(object sender, RoutedEventArgs e)
         {
             Show_ProductsView();
+        }
+
+        private void DishesCatalogBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Show_WaitView("Cargando el catálogo de platillos");
+
+            //TODO slect all dishes from db
+            List<Dishes> dishes;
+            using (var db = App.DbFactory.Open())
+            {
+                dishes = db.Select<Dishes>();
+            }
+
+            Dispatcher.SafelyInvoke(()=>
+            {
+                Show_DishesView(dishes);
+            });
         }
     }
 }

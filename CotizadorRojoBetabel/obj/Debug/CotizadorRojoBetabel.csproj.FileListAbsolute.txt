@@ -102,3 +102,5 @@ C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\
 C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\bin\Debug\Resources\LogoSmall.png
 C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\bin\Debug\itextsharp.dll
 C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\bin\Debug\itextsharp.xml
+C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\DishesView.g.cs
+C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\DishesView.baml

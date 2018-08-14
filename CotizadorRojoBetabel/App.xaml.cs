@@ -115,6 +115,7 @@ namespace CotizadorRojoBetabel
                 {
                     db.CreateTableIfNotExists<Products>();
                     db.CreateTableIfNotExists<Dishes>();
+                    db.CreateTableIfNotExists<Ingredients>();
                 }
 
                 //load MainView

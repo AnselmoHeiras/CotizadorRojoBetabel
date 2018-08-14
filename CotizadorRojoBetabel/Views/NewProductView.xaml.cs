@@ -165,20 +165,45 @@ namespace CotizadorRojoBetabel.Views
                 {
                     try
                     {
-                        using (var db = App.DbFactory.Open())
+                        if (weight != 1)
                         {
-                            db.Update(new Products
+                            var yieldPercent = yield / 100;
+                            var yieldByWeight = 1 / yieldPercent;
+                            var priceByOne = Math.Round(price / weight, 2);
+                            var costByOne = Math.Round(yieldByWeight * priceByOne, 2);
+                            using (var db = App.DbFactory.Open())
                             {
-                                Id = _product.Id,
-                                Name = name,
-                                Category = category,
-                                Price = price,
-                                Unit = packageUnit,
-                                Weight = weight,
-                                Waste = waste,
-                                Yield = yield,
-                                Cost = Cost
-                            });
+                                db.Update(new Products
+                                {
+                                    Id = _product.Id,
+                                    Name = name,
+                                    Category = category,
+                                    Price = priceByOne,
+                                    Unit = packageUnit,
+                                    Weight = 1,
+                                    Waste = waste,
+                                    Yield = yield,
+                                    Cost = costByOne
+                                });
+                            }
+                        }
+                        else
+                        {
+                            using (var db = App.DbFactory.Open())
+                            {
+                                db.Update(new Products
+                                {
+                                    Id = _product.Id,
+                                    Name = name,
+                                    Category = category,
+                                    Price = price,
+                                    Unit = packageUnit,
+                                    Weight = weight,
+                                    Waste = waste,
+                                    Yield = yield,
+                                    Cost = Cost
+                                });
+                            }
                         }
                         ParentView.Show_MessageView("El producto se ha actualizado con éxito\n¿Deseas guardar uno nuevo?",
                             //affirmative action
@@ -214,17 +239,40 @@ namespace CotizadorRojoBetabel.Views
                 }
                 else
                 {
-                    var product = new Products
+                    Products product;
+                    if (weight != 1)
                     {
-                        Name = name,
-                        Category = category,
-                        Price = price,
-                        Unit = packageUnit,
-                        Weight = weight,
-                        Waste = waste,
-                        Yield = yield,
-                        Cost = Cost
-                    };
+                        var yieldPercent = yield / 100;
+                        var yieldByWeight = 1 / yieldPercent;
+                        var priceByOne = Math.Round(price / weight, 2);
+                        var costByOne = Math.Round(yieldByWeight * priceByOne, 2);
+                        product = new Products
+                        {
+                            Name = name,
+                            Category = category,
+                            Price = priceByOne,
+                            Unit = packageUnit,
+                            Weight = 1,
+                            Waste = waste,
+                            Yield = yield,
+                            Cost = costByOne
+                        };
+                    }
+                    else
+                    {
+                        product = new Products
+                        {
+                            Name = name,
+                            Category = category,
+                            Price = price,
+                            Unit = packageUnit,
+                            Weight = weight,
+                            Waste = waste,
+                            Yield = yield,
+                            Cost = Cost
+                        };
+                    }
+
                     try
                     {
                         using (var db = App.DbFactory.Open())
@@ -409,9 +457,20 @@ namespace CotizadorRojoBetabel.Views
 
             try
             {
-                var yieldPercent = yield / 100;
-                var yieldByWeight = weight / yieldPercent;
-                Cost = Math.Round(yieldByWeight * price, 2);
+                if (weight != 1)
+                {
+                    var yieldPercent = yield / 100;
+                    var yieldByWeight = 1 / yieldPercent;
+                    var priceByOne = Math.Round(price / weight, 2);
+                    var costByOne = Math.Round(yieldByWeight * priceByOne, 2);
+                    Cost = Math.Round(costByOne * weight, 2);
+                }
+                else
+                {
+                    var yieldPercent = yield / 100;
+                    var yieldByWeight = weight / yieldPercent;
+                    Cost = Math.Round(yieldByWeight * price, 2);
+                }                
             }
             catch (DivideByZeroException)
             {
