@@ -98,6 +98,9 @@
     <Compile Include="Models\Dishes.cs" />
     <Compile Include="Models\Ingredients.cs" />
     <Compile Include="Models\Products.cs" />
+    <Compile Include="Views\CreateNewDish.xaml.cs">
+      <DependentUpon>CreateNewDish.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DishesView.xaml.cs">
       <DependentUpon>DishesView.xaml</DependentUpon>
     </Compile>
@@ -126,6 +129,10 @@
     <Compile Include="Views\WaitView.xaml.cs">
       <DependentUpon>WaitView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\CreateNewDish.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DishesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -50,6 +50,9 @@ namespace CotizadorRojoBetabel.Views
         internal static void Show_WaitView(string message)
         {
             Current.Dispatcher.Invoke(() => {
+                ParentView.Current.ProductCatalogBtn.IsEnabled = false;
+                ParentView.Current.DishesCatalogBtn.IsEnabled = false;
+                ParentView.Current.ConfigurationBtn.IsEnabled = false;
                 var oldView = Current.Transition.Content as UserControl;
                 var view = new WaitView(message);
                 Current.Transition.Content = view;
@@ -77,6 +80,9 @@ namespace CotizadorRojoBetabel.Views
         internal static void Show_MessageView(string message, Action affirmativeAction = null, string ABtnContent = null, Action negativeAction = null, string BBtnContent = null, FontAwesomeIcon icon = FontAwesomeIcon.None)
         {
             Current.Dispatcher.Invoke(() => {
+                ParentView.Current.ProductCatalogBtn.IsEnabled = false;
+                ParentView.Current.DishesCatalogBtn.IsEnabled = false;
+                ParentView.Current.ConfigurationBtn.IsEnabled = false;
                 var oldView = Current.Transition.Content as UserControl;
                 var view = new MessageView(message, affirmativeAction, ABtnContent, negativeAction, BBtnContent, icon);
                 Current.Transition.Content = view;
@@ -89,6 +95,9 @@ namespace CotizadorRojoBetabel.Views
         internal static void Show_ProductsView()
         {
             Current.Dispatcher.Invoke(() => {
+                ParentView.Current.ProductCatalogBtn.IsEnabled = true;
+                ParentView.Current.DishesCatalogBtn.IsEnabled = true;
+                ParentView.Current.ConfigurationBtn.IsEnabled = true;
                 var oldView = Current.Transition.Content as UserControl;
                 var view = new ProductsView();
                 Current.Transition.Content = view;
@@ -101,6 +110,9 @@ namespace CotizadorRojoBetabel.Views
         internal static void Show_NewProductView(Products product = null)
         {
             Current.Dispatcher.Invoke(() => {
+                ParentView.Current.ProductCatalogBtn.IsEnabled = false;
+                ParentView.Current.DishesCatalogBtn.IsEnabled = false;
+                ParentView.Current.ConfigurationBtn.IsEnabled = false;
                 var oldView = Current.Transition.Content as UserControl;
                 var view = new NewProductView(product);
                 Current.Transition.Content = view;
@@ -113,6 +125,9 @@ namespace CotizadorRojoBetabel.Views
         internal static void Show_DishesView(List<Dishes> dishes)
         {
             Current.Dispatcher.Invoke(() => {
+                ParentView.Current.ProductCatalogBtn.IsEnabled = true;
+                ParentView.Current.DishesCatalogBtn.IsEnabled = true;
+                ParentView.Current.ConfigurationBtn.IsEnabled = true;
                 var oldView = Current.Transition.Content as UserControl;
                 var view = new DishesView(dishes);
                 Current.Transition.Content = view;
@@ -122,14 +137,32 @@ namespace CotizadorRojoBetabel.Views
             });
         }
 
-        internal static void Show_NewDishView()
+        internal static void Show_CreateNewDishView()
         {
             Current.Dispatcher.Invoke(() => {
+                ParentView.Current.ProductCatalogBtn.IsEnabled = false;
+                ParentView.Current.DishesCatalogBtn.IsEnabled = false;
+                ParentView.Current.ConfigurationBtn.IsEnabled = false;
                 var oldView = Current.Transition.Content as UserControl;
-                var view = new NewDish();
+                var view = new CreateNewDish();
                 Current.Transition.Content = view;
                 ViewLoaded?.Invoke(view);
-                App.Log.Message($"NewDishView", "VIEW-LOADED");
+                App.Log.Message($"CreateNewDishView", "VIEW-LOADED");
+                if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
+            });
+        }
+
+        internal static void Show_NewDishView(Dishes dish, List<Products> products = null)
+        {
+            Current.Dispatcher.Invoke(() => {
+                ParentView.Current.ProductCatalogBtn.IsEnabled = false;
+                ParentView.Current.DishesCatalogBtn.IsEnabled = false;
+                ParentView.Current.ConfigurationBtn.IsEnabled = false;
+                var oldView = Current.Transition.Content as UserControl;
+                var view = new NewDish(dish, products);
+                Current.Transition.Content = view;
+                ViewLoaded?.Invoke(view);
+                App.Log.Message($"NewDishView. Dish: {dish.Serialize()}  Products: {products.Serialize()}", "VIEW-LOADED");
                 if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
             });
         }

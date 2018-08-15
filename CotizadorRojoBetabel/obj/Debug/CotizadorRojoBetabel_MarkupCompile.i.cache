@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\LYF Ingenieria\Desktop\Rojo Betabel\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\
+C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\
 CotizadorRojoBetabel
 none
 false
 DEBUG;TRACE
-C:\Users\LYF Ingenieria\Desktop\Rojo Betabel\CotizadorRojoBetabel\CotizadorRojoBetabel\App.xaml
-8-2094438790
+C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\App.xaml
+9-840486413
 
-21-192609875
-2683937236
-Views\DishesView.xaml;Views\MainView.xaml;Views\MessageView.xaml;Views\NewDish.xaml;Views\NewProductView.xaml;Views\ParentView.xaml;Views\ProductsView.xaml;Views\WaitView.xaml;
+222048142137
+26-151492797
+Views\CreateNewDish.xaml;Views\DishesView.xaml;Views\MainView.xaml;Views\MessageView.xaml;Views\NewDish.xaml;Views\NewProductView.xaml;Views\ParentView.xaml;Views\ProductsView.xaml;Views\WaitView.xaml;
 
-True
+False
 
