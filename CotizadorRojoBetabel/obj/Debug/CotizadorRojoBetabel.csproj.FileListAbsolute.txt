@@ -117,3 +117,7 @@ C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\
 C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\NewDish.baml
 C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\CreateNewDish.g.cs
 C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\CreateNewDish.baml
+C:\Users\LYF Ingenieria\Desktop\Rojo Betabel\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\AddIngredientsView.g.cs
+C:\Users\LYF Ingenieria\Desktop\Rojo Betabel\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\CreateNewDish.g.cs
+C:\Users\LYF Ingenieria\Desktop\Rojo Betabel\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\AddIngredientsView.baml
+C:\Users\LYF Ingenieria\Desktop\Rojo Betabel\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\CreateNewDish.baml

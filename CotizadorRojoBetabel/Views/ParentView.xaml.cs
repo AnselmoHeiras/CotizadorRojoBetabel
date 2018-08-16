@@ -94,15 +94,24 @@ namespace CotizadorRojoBetabel.Views
 
         internal static void Show_ProductsView()
         {
+            Show_WaitView("Cargando la lista de productos");
+
+            //TODO select all products from db
+            List<Products> products;
+            using (var db = App.DbFactory.Open())
+            {
+                products = db.Select<Products>();
+            }
+
             Current.Dispatcher.Invoke(() => {
                 ParentView.Current.ProductCatalogBtn.IsEnabled = true;
                 ParentView.Current.DishesCatalogBtn.IsEnabled = true;
                 ParentView.Current.ConfigurationBtn.IsEnabled = true;
                 var oldView = Current.Transition.Content as UserControl;
-                var view = new ProductsView();
+                var view = new ProductsView(products);
                 Current.Transition.Content = view;
                 ViewLoaded?.Invoke(view);
-                App.Log.Message($"ProductsView", "VIEW-LOADED");
+                App.Log.Message($"ProductsView, Products: {products.Serialize(LibreR.Models.Enums.Serializer.OneLine)}", "VIEW-LOADED");
                 if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
             });
         }
@@ -122,8 +131,17 @@ namespace CotizadorRojoBetabel.Views
             });
         }
 
-        internal static void Show_DishesView(List<Dishes> dishes)
+        internal static void Show_DishesView()
         {
+            Show_WaitView("Cargando el catálogo de platillos");
+
+            //TODO select all dishes from db
+            List<Dishes> dishes;
+            using (var db = App.DbFactory.Open())
+            {
+                dishes = db.Select<Dishes>();
+            }
+
             Current.Dispatcher.Invoke(() => {
                 ParentView.Current.ProductCatalogBtn.IsEnabled = true;
                 ParentView.Current.DishesCatalogBtn.IsEnabled = true;
@@ -152,17 +170,41 @@ namespace CotizadorRojoBetabel.Views
             });
         }
 
-        internal static void Show_NewDishView(Dishes dish, List<Products> products = null)
+        internal static void Show_NewDishView(Dishes dish)
         {
             Current.Dispatcher.Invoke(() => {
                 ParentView.Current.ProductCatalogBtn.IsEnabled = false;
                 ParentView.Current.DishesCatalogBtn.IsEnabled = false;
                 ParentView.Current.ConfigurationBtn.IsEnabled = false;
                 var oldView = Current.Transition.Content as UserControl;
-                var view = new NewDish(dish, products);
+                var view = new NewDish(dish);
                 Current.Transition.Content = view;
                 ViewLoaded?.Invoke(view);
-                App.Log.Message($"NewDishView. Dish: {dish.Serialize()}  Products: {products.Serialize()}", "VIEW-LOADED");
+                App.Log.Message($"NewDishView. Dish: {dish.Serialize(LibreR.Models.Enums.Serializer.OneLine)}", "VIEW-LOADED");
+                if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
+            });
+        }
+
+        internal static void Show_AddIngredientsView(Dishes dish)
+        {
+            Show_WaitView("Cargando las lista de productos");
+
+            //TODO select all products from db
+            List<Products> products;
+            using (var db = App.DbFactory.Open())
+            {
+                products = db.Select<Products>();
+            }
+
+            Current.Dispatcher.Invoke(() => {
+                ParentView.Current.ProductCatalogBtn.IsEnabled = false;
+                ParentView.Current.DishesCatalogBtn.IsEnabled = false;
+                ParentView.Current.ConfigurationBtn.IsEnabled = false;
+                var oldView = Current.Transition.Content as UserControl;
+                var view = new AddIngredientsView(dish, products);
+                Current.Transition.Content = view;
+                ViewLoaded?.Invoke(view);
+                App.Log.Message($"AddIngredientsView. Dish: {dish.Serialize(LibreR.Models.Enums.Serializer.OneLine)}\nProducts: {products.Serialize(LibreR.Models.Enums.Serializer.OneLine)}", "VIEW-LOADED");
                 if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
             });
         }
@@ -174,19 +216,7 @@ namespace CotizadorRojoBetabel.Views
 
         private void DishesCatalogBtn_Click(object sender, RoutedEventArgs e)
         {
-            Show_WaitView("Cargando el catálogo de platillos");
-
-            //TODO slect all dishes from db
-            List<Dishes> dishes;
-            using (var db = App.DbFactory.Open())
-            {
-                dishes = db.Select<Dishes>();
-            }
-
-            Dispatcher.SafelyInvoke(()=>
-            {
-                Show_DishesView(dishes);
-            });
+            Show_DishesView();
         }
     }
 }

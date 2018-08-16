@@ -30,7 +30,6 @@ namespace CotizadorRojoBetabel.Views
         private decimal _portionCost;
         private decimal _salePrice;
         private Dishes _dish;
-        private List<Products> _products;
         private ObservableCollection<IngredientsTable> _ingredientsOC;
 
         internal decimal TotalCost
@@ -72,10 +71,9 @@ namespace CotizadorRojoBetabel.Views
             }
         }
 
-        public NewDish(Dishes dish, List<Products> products = null)
+        public NewDish(Dishes dish)
         {
             _dish = dish;
-            _products = products;
             InitializeComponent();
         }
 
@@ -96,17 +94,19 @@ namespace CotizadorRojoBetabel.Views
             {
                 _ingredientsOC = new ObservableCollection<IngredientsTable>();
 
-                if (_products != null)
+                if (_dish.Ingredients != null)
                 {
-                    foreach (var p in _products)
+                    foreach (var p in _dish.Ingredients)
                     {
-                        _ingredientsOC.Add(new IngredientsTable
+                        var ingredient = new IngredientsTable
                         {
-                            Name = p.Name,
-                            Unit = p.Unit,
-                            Weight = p.Weight,
-                            Cost = p.Cost
-                        });
+                            Name = p.Ingredient.Name,
+                            Unit = p.Ingredient.Unit,
+                            Weight = p.Quantity,
+                            Cost = Math.Round(p.Ingredient.Cost * p.Quantity, 2)
+                        };
+                        _ingredientsOC.Add(ingredient);
+                        TotalCost = TotalCost + ingredient.Cost;
                     }
                 }
 
@@ -114,8 +114,26 @@ namespace CotizadorRojoBetabel.Views
             }
             else
             {
+                _ingredientsOC = new ObservableCollection<IngredientsTable>();
 
-            }            
+                if (_dish.Ingredients != null)
+                {
+                    foreach (var p in _dish.Ingredients)
+                    {
+                        var ingredient = new IngredientsTable
+                        {
+                            Name = p.Ingredient.Name,
+                            Unit = p.Ingredient.Unit,
+                            Weight = p.Quantity,
+                            Cost = Math.Round(p.Ingredient.Cost * p.Quantity, 2)
+                        };
+                        _ingredientsOC.Add(ingredient);
+                        TotalCost = TotalCost + ingredient.Cost;
+                    }
+                }
+
+                IngredientsDgd.ItemsSource = _ingredientsOC;
+            }
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -133,9 +151,21 @@ namespace CotizadorRojoBetabel.Views
             LineCmb.ItemsSource = LineItems;
 
             //initialize values
-            NameTxt.Text = _dish.Name;
-            PortionsTxt.Text = _dish.Portions.ToString();
-            LineCmb.SelectedIndex = 0;
+            if (_dish.Portions <= 0)
+            {
+                NameTxt.Text = _dish.Name;
+                PortionsTxt.Text = _dish.Portions.ToString();
+                LineCmb.SelectedIndex = 0;
+            }
+            else
+            {
+                NameTxt.Text = _dish.Name;
+                PortionsTxt.Text = _dish.Portions.ToString();
+                LineCmb.SelectedValue = _dish.Line.ToString();
+                InstructionsTxt.Text = _dish.Instructions;
+                NotesTxt.Text = _dish.Notes;
+            }
+
             LoadColumns();
         }
 
@@ -145,6 +175,11 @@ namespace CotizadorRojoBetabel.Views
         }
 
         private void LineCmb_GotFocus(object sender, RoutedEventArgs e)
+        {
+            WarningTbk.Visibility = Visibility.Hidden;
+        }
+
+        private void IngredientsDgd_GotFocus(object sender, RoutedEventArgs e)
         {
             WarningTbk.Visibility = Visibility.Hidden;
         }
@@ -174,33 +209,58 @@ namespace CotizadorRojoBetabel.Views
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
+            var lineParsed = Enum.TryParse(LineCmb.Text, out DishesLine dishLine);
 
-        }
-
-        private void CleanBtn_Click(object sender, RoutedEventArgs e)
-        {
-
+            if (NameTxt.Text == "" || NameTxt.Text == " " || NameTxt.Text == string.Empty)
+            {
+                WarningTbk.Text = "Ingrese el nombre del platillo antes de guardarlo";
+                WarningTbk.Visibility = Visibility.Visible;
+            }
+            else if (TotalCost <= 0)
+            {
+                WarningTbk.Text = "Ingrese ingredientes antes de guardar el platillo";
+                WarningTbk.Visibility = Visibility.Visible;
+            }
+            else if (PortionCost <= 0)
+            {
+                WarningTbk.Text = "Ingrese el número de porciones antes de guardar el platillo";
+                WarningTbk.Visibility = Visibility.Visible;
+            }
+            else if (!lineParsed || LineCmb.Text == "-Seleccione una opción-")
+            {
+                WarningTbk.Text = "Verifique que haya seleccionado la linea a la que pertenece el platillo";
+                WarningTbk.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                //TODO save all in the db and create a new view to save the picture
+            }
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
-            ParentView.Show_WaitView("Cargando el catálogo de platillos");
+            ParentView.Show_WaitView("Cancelando platillo");
+            List<Ingredients> ingredientsList = new List<Ingredients>();
 
-            //TODO slect all dishes from db
-            List<Dishes> dishes;
-            using (var db = App.DbFactory.Open())
+            if (_dish.Ingredients != null)
             {
-                if (_dish.Portions <= 0)
-                {
-                    db.Delete(_dish);
-                }                    
-                dishes = db.Select<Dishes>();
+                ingredientsList = _dish.Ingredients.ToList();
             }
 
-            Dispatcher.SafelyInvoke(() =>
+            
+            var selectedIngredients = ingredientsList.Where(x => x.Dish == _dish.Id);
+
+            using (var db = App.DbFactory.Open())
             {
-                ParentView.Show_DishesView(dishes);
-            });
+                foreach(var ingredient in selectedIngredients)
+                {
+                    db.Delete(ingredient);
+                }
+                _dish.Ingredients = null;
+                db.Delete(_dish);
+            }
+
+            ParentView.Show_DishesView();
         }        
 
         private void PortionsTxt_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -211,7 +271,48 @@ namespace CotizadorRojoBetabel.Views
 
         private void PortionsTxt_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (TotalCost > 0)
+            {
+             var portionsParsed = decimal.TryParse(PortionsTxt.Text, out decimal portions);
+                if (portionsParsed && portions > 0)
+                {
+                    PortionCost = Math.Round(TotalCost / portions, 2);
+                    SalePrice = Math.Round((PortionCost * (Config.Current.EarningsPercent / 100)) + PortionCost, 2);
+                    WarningTbk.Visibility = Visibility.Hidden;
 
+                }
+                else
+                {
+                    WarningTbk.Text = "Verifique que la porción ingresada sea un número mayor a 0";
+                    WarningTbk.Visibility = Visibility.Visible;
+                }                
+            }
+        }
+
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ParentView.Show_AddIngredientsView(_dish);
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(IngredientsDgd.SelectedItem is IngredientsTable ingredient)) return;
+
+            List<Ingredients> ingredientsList = _dish.Ingredients.ToList();
+            var selectedIngredient = ingredientsList.SingleOrDefault(x => x.Dish == _dish.Id && x.Ingredient.Name == ingredient.Name);
+            ingredientsList.Remove(selectedIngredient);
+            _dish.Ingredients = ingredientsList.ToArray();
+
+            using (var db = App.DbFactory.Open())
+            {
+                db.Delete(selectedIngredient);
+            }
+
+            _ingredientsOC.Remove(ingredient);
+            foreach (var p in _ingredientsOC)
+            {
+                TotalCost = TotalCost + p.Cost;
+            }
         }
     }
 }

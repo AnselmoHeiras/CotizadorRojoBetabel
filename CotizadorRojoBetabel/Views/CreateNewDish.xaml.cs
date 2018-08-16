@@ -57,19 +57,7 @@ namespace CotizadorRojoBetabel.Views
 
         private void OnClick_CancelBtn(object sender, RoutedEventArgs e)
         {
-            ParentView.Show_WaitView("Cargando el catálogo de platillos");
-
-            //TODO slect all dishes from db
-            List<Dishes> dishes;
-            using (var db = App.DbFactory.Open())
-            {
-                dishes = db.Select<Dishes>();
-            }
-
-            Dispatcher.SafelyInvoke(() =>
-            {
-                ParentView.Show_DishesView(dishes);
-            });
+            ParentView.Show_DishesView();
         }
 
         private void NameTxt_GotFocus(object sender, RoutedEventArgs e)

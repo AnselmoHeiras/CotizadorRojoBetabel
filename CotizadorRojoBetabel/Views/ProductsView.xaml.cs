@@ -27,23 +27,24 @@ namespace CotizadorRojoBetabel.Views
     /// </summary>
     public partial class ProductsView : UserControl
     {
+        private List<Products> _products;
         private ObservableCollection<Products> _productsOc;
 
-        public ProductsView()
+        public ProductsView(List<Products> products)
         {
+            _products = products;
             InitializeComponent();
         }
 
         private void LoadColumns()
         {
-            List<Products> products;
             using (var db = App.DbFactory.Open())
             {
-               products = db.Select<Products>();
+               _products = db.Select<Products>();
             }
 
             _productsOc = new ObservableCollection<Products>();
-            foreach(var product in products)
+            foreach(var product in _products)
             {
                 _productsOc.Add(product);
             }

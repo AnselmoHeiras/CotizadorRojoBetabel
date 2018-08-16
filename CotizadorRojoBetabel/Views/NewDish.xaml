@@ -69,7 +69,7 @@
 
                 <DataGrid x:Name="IngredientsDgd" Grid.Row="1" Style="{DynamicResource RBGreenDataGridStyle}" 
                       AutoGeneratingColumn="OnAutoGeneratingColumn" BorderBrush="{x:Null}" Grid.Column="0"
-                      Grid.ColumnSpan="5" Grid.RowSpan="4" ScrollViewer.CanContentScroll="False"/>
+                      Grid.ColumnSpan="5" Grid.RowSpan="4" ScrollViewer.CanContentScroll="False" GotFocus="IngredientsDgd_GotFocus"/>
 
             </Grid>
 
@@ -81,17 +81,12 @@
                     <RowDefinition Height="1.66*"/>
                 </Grid.RowDefinitions>
                 <Button Name="AddIngredientBtn" Margin="0,10,10,10" Style="{DynamicResource RBGreenRoundCornerButton}"
-                     Grid.Row="1" BorderBrush="{x:Null}" Click="SaveBtn_Click">
+                     Grid.Row="1" BorderBrush="{x:Null}" Click="AddBtn_Click">
                     <fa:ImageAwesome Icon="Plus" Foreground="White" Margin="8"/>
                 </Button>
 
-                <Button Name="UpdateIngredientBtn" Margin="0,10,10,10" Style="{DynamicResource RBGreenRoundCornerButton}"
-                    Grid.Row="2" BorderBrush="{x:Null}" Click="CleanBtn_Click">
-                    <fa:ImageAwesome Icon="Refresh" Foreground="White" Margin="8"/>
-                </Button>
-
                 <Button Name="DeleteIngredientBtn" Margin="0,10,10,10" Style="{DynamicResource RBGreenRoundCornerButton}"
-                    Grid.Row="3" BorderBrush="{x:Null}" Click="CancelBtn_Click">
+                    Grid.Row="2" BorderBrush="{x:Null}" Click="DeleteBtn_Click">
                     <fa:ImageAwesome Icon="Minus" Foreground="White" Margin="8"/>
                 </Button>
             </Grid>
@@ -119,7 +114,8 @@
                 <TextBlock Name="InstructionsHeaderTbk" Text="Preparación:" VerticalAlignment="Center"
                        FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}" Grid.ColumnSpan="2" Margin="0,2"/>
                 <TextBox Name="InstructionsTxt" Grid.Row="1" VerticalAlignment="Stretch" FontSize="12" TextWrapping="Wrap" AcceptsReturn="True"
-                         Foreground="{DynamicResource RBGrayForeground}" SpellCheck.IsEnabled="True" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2"/>
+                         Foreground="{DynamicResource RBGrayForeground}" SpellCheck.IsEnabled="True" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2"
+                         GotFocus="ProductTxt_GotFocus"/>
             </Grid>
 
             <Grid Grid.Row="4" Grid.Column="4" Margin="0,0,10,0" Grid.ColumnSpan="4">
@@ -130,7 +126,8 @@
                 <TextBlock Name="NotesHeaderTbk" Text="Notas:" VerticalAlignment="Center"
                        FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
                 <TextBox Name="NotesTxt" Grid.Row="1" VerticalAlignment="Stretch" FontSize="12" TextWrapping="Wrap" AcceptsReturn="True"
-                         Foreground="{DynamicResource RBGrayForeground}" SpellCheck.IsEnabled="True" VerticalScrollBarVisibility="Auto" Height="Auto"/>
+                         Foreground="{DynamicResource RBGrayForeground}" SpellCheck.IsEnabled="True" VerticalScrollBarVisibility="Auto" Height="Auto"
+                         GotFocus="ProductTxt_GotFocus"/>
             </Grid>
 
 
@@ -167,8 +164,8 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Name="PortionCostHeaderTbk" Text="Costo Plato:" VerticalAlignment="Bottom" TextAlignment="Center"
-                       FontSize="18" FontWeight="Black" Foreground="#FFBB1010" Margin="0,0,0,5"/>
+                <TextBlock Name="PortionCostHeaderTbk" Text="Costo Plato:" VerticalAlignment="Center" TextAlignment="Center"
+                       FontSize="18" FontWeight="Black" Foreground="#FFBB1010"/>
                 <TextBlock Name="PortionCostTxt" Grid.Row="1" VerticalAlignment="Center" FontSize="20" Text="$0.00" TextAlignment="Center"
                          FontWeight="Bold" Foreground="#FFFF6464"/>
             </Grid>
@@ -185,13 +182,8 @@
             </Grid>
 
             <Button Name="SaveBtn" Margin="20,10,20,10" Style="{DynamicResource RBRedRoundCornerButton}"
-                    Grid.Column="4" Grid.Row="6" BorderBrush="{x:Null}" Click="SaveBtn_Click">
+                    Grid.Column="5" Grid.Row="6" Grid.ColumnSpan="2" BorderBrush="{x:Null}" Click="SaveBtn_Click">
                 <fa:ImageAwesome Icon="Save" Foreground="White" Margin="8"/>
-            </Button>
-
-            <Button Name="CleanBtn" Margin="20,10,20,10" Style="{DynamicResource RBRedRoundCornerButton}"
-                    Grid.Column="5" Grid.Row="6" Grid.ColumnSpan="2" BorderBrush="{x:Null}" Click="CleanBtn_Click">
-                <fa:ImageAwesome Icon="Repeat" Foreground="White" Margin="8"/>
             </Button>
 
             <Button Name="CancelBtn" Margin="20,10,20,10" Style="{DynamicResource RBRedRoundCornerButton}"
