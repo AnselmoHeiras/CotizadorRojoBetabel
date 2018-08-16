@@ -122,5 +122,16 @@ namespace CotizadorRojoBetabel
                 ParentView.Show_MainView();
             });
         }
+
+        public static bool HasProducts()
+        {
+            List<Products> products = new List<Products>();
+            using (var db = DbFactory.Open())
+            {
+               products = db.Select<Products>();
+            }
+
+            return products.Any();
+        }
     }
 }

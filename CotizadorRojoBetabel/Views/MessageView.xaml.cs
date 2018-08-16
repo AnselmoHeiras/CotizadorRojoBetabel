@@ -76,10 +76,12 @@ namespace CotizadorRojoBetabel.Views
                 if (_affirmativeAction != null && _negativeAction == null)
                 {
                     NegativeBtn.Visibility = Visibility.Collapsed;
+                    AffirmativeBtn.SetValue(Grid.ColumnSpanProperty, 2);
                 }
                 if (_affirmativeAction == null && _negativeAction != null)
                 {
                     AffirmativeBtn.Visibility = Visibility.Collapsed;
+                    NegativeBtn.SetValue(Grid.ColumnSpanProperty, 2);
                 }
             }
         }

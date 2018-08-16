@@ -93,7 +93,26 @@ namespace CotizadorRojoBetabel.Views
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            ParentView.Show_CreateNewDishView();
+            if (App.HasProducts())
+            {
+                ParentView.Show_CreateNewDishView();
+            }
+            else
+            {
+                ParentView.Show_MessageView("No hay productos registrados\nRegistre productos para poder crear platillos",
+                    //affirmative action
+                    delegate
+                    {
+                        ParentView.Show_DishesView();
+                    },
+                    "Aceptar",
+                    //negative action
+                    null,
+                    null,
+                    FontAwesome.WPF.FontAwesomeIcon.ExclamationCircle
+                    );
+            }
+            
         }
 
         private void UpdateBtn_Click(object sender, RoutedEventArgs e)
