@@ -117,7 +117,9 @@ namespace CotizadorRojoBetabel.Views
 
         private void UpdateBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!(DishesDgd.SelectedItem is LocalDishes localDishes)) return;
+            var dish = _dishesDb.SingleOrDefault(x => x.Id == localDishes.Id);
+            ParentView.Show_NewDishView(dish);
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)

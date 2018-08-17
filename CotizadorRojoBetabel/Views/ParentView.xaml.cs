@@ -209,6 +209,21 @@ namespace CotizadorRojoBetabel.Views
             });
         }
 
+        internal static void Show_AddDishPhoto(Dishes dish)
+        {
+            Current.Dispatcher.Invoke(() => {
+                ParentView.Current.ProductCatalogBtn.IsEnabled = false;
+                ParentView.Current.DishesCatalogBtn.IsEnabled = false;
+                ParentView.Current.ConfigurationBtn.IsEnabled = false;
+                var oldView = Current.Transition.Content as UserControl;
+                var view = new AddDishPhotoView(dish);
+                Current.Transition.Content = view;
+                ViewLoaded?.Invoke(view);
+                App.Log.Message($"AddDishPhotoView. Dish: {dish.Serialize(LibreR.Models.Enums.Serializer.OneLine)}", "VIEW-LOADED");
+                if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
+            });
+        }
+
         private void ProductCatalogBtn_Click(object sender, RoutedEventArgs e)
         {
             Show_ProductsView();

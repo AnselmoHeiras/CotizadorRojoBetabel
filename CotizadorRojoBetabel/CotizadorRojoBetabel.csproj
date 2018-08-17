@@ -98,6 +98,9 @@
     <Compile Include="Models\Dishes.cs" />
     <Compile Include="Models\Ingredients.cs" />
     <Compile Include="Models\Products.cs" />
+    <Compile Include="Views\AddDishPhotoView.xaml.cs">
+      <DependentUpon>AddDishPhotoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddIngredientsView.xaml.cs">
       <DependentUpon>AddIngredientsView.xaml</DependentUpon>
     </Compile>
@@ -132,6 +135,10 @@
     <Compile Include="Views\WaitView.xaml.cs">
       <DependentUpon>WaitView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AddDishPhotoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddIngredientsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

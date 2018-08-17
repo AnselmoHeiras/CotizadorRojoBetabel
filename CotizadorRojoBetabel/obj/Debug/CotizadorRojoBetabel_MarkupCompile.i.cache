@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\LYF Ingenieria\Desktop\Rojo Betabel\CotizadorRojoBetabel\CotizadorRojoBetabel\App.xaml
-10620201711
+111355930852
 
-23425134484
+24-1509838117
 2683937236
-Views\AddIngredientsView.xaml;Views\CreateNewDish.xaml;Views\DishesView.xaml;Views\MainView.xaml;Views\MessageView.xaml;Views\NewDish.xaml;Views\NewProductView.xaml;Views\ParentView.xaml;Views\ProductsView.xaml;Views\WaitView.xaml;
+Views\AddDishPhotoView.xaml;Views\AddIngredientsView.xaml;Views\CreateNewDish.xaml;Views\DishesView.xaml;Views\MainView.xaml;Views\MessageView.xaml;Views\NewDish.xaml;Views\NewProductView.xaml;Views\ParentView.xaml;Views\ProductsView.xaml;Views\WaitView.xaml;
 
 True
 

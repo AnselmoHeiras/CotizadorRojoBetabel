@@ -164,6 +164,8 @@ namespace CotizadorRojoBetabel.Views
                 LineCmb.SelectedValue = _dish.Line.ToString();
                 InstructionsTxt.Text = _dish.Instructions;
                 NotesTxt.Text = _dish.Notes;
+                PortionCost = Math.Round(TotalCost / _dish.Portions, 2);
+                SalePrice = Math.Round((PortionCost * (Config.Current.EarningsPercent / 100)) + PortionCost, 2);
             }
 
             LoadColumns();
@@ -233,7 +235,17 @@ namespace CotizadorRojoBetabel.Views
             }
             else
             {
-                //TODO save all in the db and create a new view to save the picture
+                _dish.Instructions = InstructionsTxt.Text;
+                _dish.Name = NameTxt.Text;
+                _dish.Portions = Int32.Parse(PortionsTxt.Text);
+                _dish.Line = dishLine;
+                _dish.Notes = NotesTxt.Text;
+
+                using (var db = App.DbFactory.Open())
+                {
+                    db.Update(_dish);
+                }
+                ParentView.Show_AddDishPhoto(_dish);
             }
         }
 
