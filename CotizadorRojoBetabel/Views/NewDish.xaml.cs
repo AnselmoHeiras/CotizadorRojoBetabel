@@ -156,6 +156,7 @@ namespace CotizadorRojoBetabel.Views
                 NameTxt.Text = _dish.Name;
                 PortionsTxt.Text = _dish.Portions.ToString();
                 LineCmb.SelectedIndex = 0;
+                LoadColumns();
             }
             else
             {
@@ -163,12 +164,13 @@ namespace CotizadorRojoBetabel.Views
                 PortionsTxt.Text = _dish.Portions.ToString();
                 LineCmb.SelectedValue = _dish.Line.ToString();
                 InstructionsTxt.Text = _dish.Instructions;
+                LoadColumns();
                 NotesTxt.Text = _dish.Notes;
                 PortionCost = Math.Round(TotalCost / _dish.Portions, 2);
                 SalePrice = Math.Round((PortionCost * (Config.Current.EarningsPercent / 100)) + PortionCost, 2);
             }
 
-            LoadColumns();
+            
         }
 
         private void ProductTxt_GotFocus(object sender, RoutedEventArgs e)
