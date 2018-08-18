@@ -1,4 +1,7 @@
-﻿using CotizadorRojoBetabel.Models;
+﻿using CotizadorRojoBetabel.Controllers;
+using CotizadorRojoBetabel.Models;
+using Microsoft.Win32;
+using ServiceStack.OrmLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -124,12 +127,93 @@ namespace CotizadorRojoBetabel.Views
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!(DishesDgd.SelectedItem is LocalDishes localDishes)) return;
+            var dish = _dishesDb.SingleOrDefault(x => x.Id == localDishes.Id);
+            try
+            {
+                using (var db = App.DbFactory.Open())
+                {
+                    var ingredients = db.Select<Ingredients>().Where(x => x.Dish == dish.Id).ToArray();
+                    foreach (var i in ingredients)
+                    {
+                        db.Delete(i);
+                    }
+                    db.Delete(dish);
+                }
+                ParentView.Show_MessageView("El platillo se ha eliminado con éxito",
+                    //affirmative action
+                    delegate
+                    {
+                        ParentView.Show_DishesView();
+                    },
+                    "Aceptar",
+                    //negative action
+                    null,
+                    null,
+                    FontAwesome.WPF.FontAwesomeIcon.CheckCircle
+                    );
+            }
+            catch (Exception)
+            {
+                ParentView.Show_MessageView("Hubo un problema al eliminar el platillo\nComuniquese a soporte técnico",
+                    //affirmative action
+                    delegate
+                    {
+                        ParentView.Show_DishesView();
+                    },
+                    "Aceptar",
+                    //negative action
+                    null,
+                    null,
+                    FontAwesome.WPF.FontAwesomeIcon.ExclamationCircle
+                    );
+            }
         }
 
         private void PrintBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (!(DishesDgd.SelectedItem is LocalDishes localDishes)) return;
+            var dish = _dishesDb.SingleOrDefault(x => x.Id == localDishes.Id);
 
+            SaveFileDialog saveDialog = new SaveFileDialog
+            {
+                Filter = "PDF file (*.pdf)|*.pdf"
+            };
+            if (saveDialog.ShowDialog() == true)
+            {
+                var s = saveDialog.FileName;
+                var fileCreated = DocumentsCreator.Dish(dish, saveDialog.FileName);
+                if (fileCreated)
+                {
+                    ParentView.Show_MessageView("El documento ha sido creado con éxito",
+                        //affirmative action
+                        delegate
+                        {
+                            ParentView.Show_DishesView();
+                        },
+                        "Aceptar",
+                        //negative action
+                        null,
+                        null,
+                        FontAwesome.WPF.FontAwesomeIcon.CheckCircle
+                        );
+                }
+                else
+                {
+                    ParentView.Show_MessageView("Hubo un problema al crear el documento\nComuniquese a soporte técnico",
+                    //affirmative action
+                    delegate
+                    {
+                        ParentView.Show_DishesView();
+                    },
+                    "Aceptar",
+                    //negative action
+                    null,
+                    null,
+                    FontAwesome.WPF.FontAwesomeIcon.ExclamationCircle
+                    );
+                }
+            }
         }
 
         private void SearchTxt_TextChanged(object sender, TextChangedEventArgs e)

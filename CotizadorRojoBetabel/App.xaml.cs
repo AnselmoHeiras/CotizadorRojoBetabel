@@ -104,6 +104,23 @@ namespace CotizadorRojoBetabel
                     Log.Message($"The directory creation failed: \n{ex.Serialize()}.", "DATABASE-DIRECTORY");
                 }
 
+                // create temporary directory
+                var temp = $"{Directory.GetCurrentDirectory()}\\temp";
+                try
+                {
+                    // Determine whether the directory exists.
+                    if (!Directory.Exists(temp))
+                    {
+                        // Try to create the directory.
+                        DirectoryInfo di = Directory.CreateDirectory(temp);
+                        Log.Message($"The temp directory was created successfully at {Directory.GetCreationTime(temp)}.", "TEMP-DIRECTORY");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Message($"The temp directory creation failed: \n{ex.Serialize()}.", "TEMP-DIRECTORY");
+                }
+
                 // load-create database
                 var database = $"{Directory.GetCurrentDirectory()}\\Data\\local.db";
                 if (!File.Exists(database))

@@ -150,7 +150,7 @@ namespace CotizadorRojoBetabel.Views
                 var view = new DishesView(dishes);
                 Current.Transition.Content = view;
                 ViewLoaded?.Invoke(view);
-                App.Log.Message($"DishesView, Dishes: {dishes.Serialize(LibreR.Models.Enums.Serializer.OneLine)}", "VIEW-LOADED");
+                App.Log.Message($"DishesView", "VIEW-LOADED");
                 if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
             });
         }
@@ -180,7 +180,7 @@ namespace CotizadorRojoBetabel.Views
                 var view = new NewDish(dish);
                 Current.Transition.Content = view;
                 ViewLoaded?.Invoke(view);
-                App.Log.Message($"NewDishView. Dish: {dish.Serialize(LibreR.Models.Enums.Serializer.OneLine)}", "VIEW-LOADED");
+                App.Log.Message($"NewDishView. Dish: {dish.ToString()}", "VIEW-LOADED");
                 if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
             });
         }
@@ -204,7 +204,7 @@ namespace CotizadorRojoBetabel.Views
                 var view = new AddIngredientsView(dish, products);
                 Current.Transition.Content = view;
                 ViewLoaded?.Invoke(view);
-                App.Log.Message($"AddIngredientsView. Dish: {dish.Serialize(LibreR.Models.Enums.Serializer.OneLine)}\nProducts: {products.Serialize(LibreR.Models.Enums.Serializer.OneLine)}", "VIEW-LOADED");
+                App.Log.Message($"AddIngredientsView. Dish: {dish.ToString()}\nProducts: {products.Serialize(LibreR.Models.Enums.Serializer.OneLine)}", "VIEW-LOADED");
                 if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
             });
         }
@@ -219,7 +219,7 @@ namespace CotizadorRojoBetabel.Views
                 var view = new AddDishPhotoView(dish);
                 Current.Transition.Content = view;
                 ViewLoaded?.Invoke(view);
-                App.Log.Message($"AddDishPhotoView. Dish: {dish.Serialize(LibreR.Models.Enums.Serializer.OneLine)}", "VIEW-LOADED");
+                App.Log.Message($"AddDishPhotoView. Dish: {dish.ToString()}", "VIEW-LOADED");
                 if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
             });
         }

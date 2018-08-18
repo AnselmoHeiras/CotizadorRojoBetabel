@@ -128,7 +128,7 @@ namespace CotizadorRojoBetabel.Views
             }
             catch (Exception)
             {
-                ParentView.Show_MessageView("Hubo un problema al agregar el producto\nComuniquese a soporte técnico",
+                ParentView.Show_MessageView("Hubo un problema al eliminar el producto\nComuniquese a soporte técnico",
                     //affirmative action
                     delegate
                     {

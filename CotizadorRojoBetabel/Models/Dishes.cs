@@ -1,4 +1,5 @@
-﻿using ServiceStack.DataAnnotations;
+﻿using LibreR.Controllers;
+using ServiceStack.DataAnnotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,13 @@ namespace CotizadorRojoBetabel.Models
         public string Notes { get; set; }
 
         public string Instructions { get; set; }
+
+        public override string ToString()
+        {
+            var draw = (Draw == null) ? false : true;
+            return $"ID: {Id}, Name: {Name},  Line: {Line.ToString()}, Portions: {Portions.ToString()}, " +
+                $"Ingredients: {Ingredients.Serialize(LibreR.Models.Enums.Serializer.OneLine)}, Draw: {draw}, Notes: {Notes}, Instructions: {Instructions}";
+        }
     }
 
     public enum DishesLine
