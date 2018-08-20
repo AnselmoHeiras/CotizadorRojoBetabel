@@ -694,8 +694,6 @@ namespace CotizadorRojoBetabel.Controllers
                 table.AddCell(EmptyCell);
                 table.AddCell(SalePriceCell);
 
-
-
                 //Add the Images
                 doc.Add(logo);
 

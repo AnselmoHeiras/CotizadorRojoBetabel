@@ -127,3 +127,5 @@ C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\
 C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\AddIngredientsView.g.cs
 C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\AddDishPhotoView.baml
 C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\AddIngredientsView.baml
+C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\SettingsView.g.cs
+C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\obj\Debug\Views\SettingsView.baml

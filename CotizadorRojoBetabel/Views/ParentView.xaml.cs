@@ -224,6 +224,21 @@ namespace CotizadorRojoBetabel.Views
             });
         }
 
+        internal static void Show_SettingsView()
+        {
+            Current.Dispatcher.Invoke(() => {
+                ParentView.Current.ProductCatalogBtn.IsEnabled = true;
+                ParentView.Current.DishesCatalogBtn.IsEnabled = true;
+                ParentView.Current.ConfigurationBtn.IsEnabled = true;
+                var oldView = Current.Transition.Content as UserControl;
+                var view = new SettingsView();
+                Current.Transition.Content = view;
+                ViewLoaded?.Invoke(view);
+                App.Log.Message($"SettingsView.", "VIEW-LOADED");
+                if (!(oldView is WaitView)) ViewUnloaded?.Invoke(oldView);
+            });
+        }
+
         private void ProductCatalogBtn_Click(object sender, RoutedEventArgs e)
         {
             Show_ProductsView();
@@ -232,6 +247,11 @@ namespace CotizadorRojoBetabel.Views
         private void DishesCatalogBtn_Click(object sender, RoutedEventArgs e)
         {
             Show_DishesView();
+        }
+
+        private void ConfigurationBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Show_SettingsView();
         }
     }
 }
