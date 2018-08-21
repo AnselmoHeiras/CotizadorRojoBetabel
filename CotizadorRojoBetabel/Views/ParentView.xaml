@@ -1,0 +1,62 @@
+﻿<Window x:Class="CotizadorRojoBetabel.Views.ParentView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:local="clr-namespace:CotizadorRojoBetabel.Views"
+        mc:Ignorable="d"
+        Title="Cotizador Rojo Betabel" Height="600" Width="800"
+        Icon="/CotizadorRojoBetabel;component/Resources/Icon.png">
+    <Window.Background>
+        <ImageBrush ImageSource="/CotizadorRojoBetabel;component/Resources/Background.png"/>
+    </Window.Background>
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="White" Opacity="0.3"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Image x:Name="LogoImg" Source="/CotizadorRojoBetabel;component/Resources/Logo.png" Grid.Row="0"/>
+
+            <Button Name="ProductCatalogBtn" Content="Productos" Margin="5,15" Grid.Row="1" Style="{DynamicResource RBRoundCornerButton}" FontSize="16" Foreground="White" Click="ProductCatalogBtn_Click" IsEnabled="False">
+                <Button.Effect>
+                    <DropShadowEffect Opacity="0.4"/>
+                </Button.Effect>
+            </Button>
+
+            <Button Name="DishesCatalogBtn" Content="Platillos" Margin="5,15" Grid.Row="2" Style="{DynamicResource RBRoundCornerButton}" FontSize="16" Foreground="White" Click="DishesCatalogBtn_Click" IsEnabled="False">
+                <Button.Effect>
+                    <DropShadowEffect Opacity="0.4"/>
+                </Button.Effect>
+            </Button>
+
+            <Button Name="ConfigurationBtn" Content="Configuración" Margin="5,15" Grid.Row="6" Style="{DynamicResource RBRoundCornerButton}" FontSize="16" Foreground="White" IsEnabled="False" Click="ConfigurationBtn_Click">
+                <Button.Effect>
+                    <DropShadowEffect Opacity="0.4"/>
+                </Button.Effect>
+            </Button>
+
+        </Grid>
+
+        <controls:TransitioningContentControl 
+            x:Name="Transition" 
+            Transition="Down"
+            Grid.Column="1"/>
+
+    </Grid>
+</Window>

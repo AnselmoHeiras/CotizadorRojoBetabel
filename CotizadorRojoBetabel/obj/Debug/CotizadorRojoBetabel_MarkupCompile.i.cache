@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\ansel\source\repos\CotizadorRojoBetabel\CotizadorRojoBetabel\App.xaml
-11151548125
+12-1401686090
 
-9426573155
-13738642453
-MainWindow.xaml;
+25904690247
+26-151492797
+Views\AddDishPhotoView.xaml;Views\AddIngredientsView.xaml;Views\CreateNewDish.xaml;Views\DishesView.xaml;Views\MainView.xaml;Views\MessageView.xaml;Views\NewDish.xaml;Views\NewProductView.xaml;Views\ParentView.xaml;Views\ProductsView.xaml;Views\SettingsView.xaml;Views\WaitView.xaml;
 
-True
+False
 

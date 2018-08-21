@@ -1,0 +1,3 @@
+[submodule "LibreR"]
+	path = LibreR
+	url = https://github.com/rafaolivas19/LibreR.git

@@ -1,0 +1,195 @@
+﻿<UserControl x:Class="CotizadorRojoBetabel.Views.NewDish"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:local="clr-namespace:CotizadorRojoBetabel.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <Border CornerRadius="40">
+        <Border.Background>
+            <SolidColorBrush Color="White" Opacity="0.8"/>
+        </Border.Background>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.66*"/>
+                <ColumnDefinition Width="0.66*"/>
+                <ColumnDefinition Width="0.66*"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.66*"/>
+                <ColumnDefinition Width="0.33*"/>
+                <ColumnDefinition Width="0.33*"/>
+                <ColumnDefinition Width="0.66*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Name="IndicationTbk" Text="Llene los campos para dar de alta un platillo"
+                       Grid.ColumnSpan="8" TextAlignment="Center" VerticalAlignment="Center" FontSize="32"
+                       TextWrapping="Wrap" Foreground="{DynamicResource RBGrayForeground}"/>
+
+            <Grid Grid.Row="1" Margin="10,0,10,0" Grid.ColumnSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Name="NameHeaderTbk" Text="Nombre:" VerticalAlignment="Center"
+                       FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
+                <TextBox Name="NameTxt" Grid.Row="1" VerticalAlignment="Center" FontSize="16"
+                         Foreground="{DynamicResource RBGrayForeground}" GotFocus="ProductTxt_GotFocus"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="6" Margin="10,0,10,0" Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Name="LineHeaderTbk" Text="Línea:" VerticalAlignment="Center"
+                       FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
+                <ComboBox Name="LineCmb" Grid.Row="1" VerticalAlignment="Center" FontSize="16"
+                         Foreground="{DynamicResource RBGrayForeground}" GotFocus="LineCmb_GotFocus"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="10,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Name="IngredientsHeaderTbk" Text="Ingredientes:" VerticalAlignment="Center"
+                       FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
+
+                <DataGrid x:Name="IngredientsDgd" Grid.Row="1" Style="{DynamicResource RBGreenDataGridStyle}" 
+                      AutoGeneratingColumn="OnAutoGeneratingColumn" BorderBrush="{x:Null}" Grid.Column="0"
+                      Grid.ColumnSpan="5" Grid.RowSpan="4" ScrollViewer.CanContentScroll="False" GotFocus="IngredientsDgd_GotFocus"/>
+
+            </Grid>
+
+            <Grid Grid.Column="3" Grid.Row="2" Grid.RowSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="1.66*"/>
+                    <RowDefinition Height="1.66*"/>
+                    <RowDefinition Height="1.66*"/>
+                </Grid.RowDefinitions>
+                <Button Name="AddIngredientBtn" Margin="0,10,10,10" Style="{DynamicResource RBGreenRoundCornerButton}"
+                     Grid.Row="1" BorderBrush="{x:Null}" Click="AddBtn_Click">
+                    <fa:ImageAwesome Icon="Plus" Foreground="White" Margin="8"/>
+                </Button>
+
+                <Button Name="DeleteIngredientBtn" Margin="0,10,10,10" Style="{DynamicResource RBGreenRoundCornerButton}"
+                    Grid.Row="2" BorderBrush="{x:Null}" Click="DeleteBtn_Click">
+                    <fa:ImageAwesome Icon="Minus" Foreground="White" Margin="8"/>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="4" Margin="0,0,10,0" Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Name="PortionsHeaderTbk" Text="Porciones:" VerticalAlignment="Center"
+                       FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
+                <TextBox Name="PortionsTxt" Grid.Row="1" VerticalAlignment="Center" FontSize="16"
+                         Foreground="{DynamicResource RBGrayForeground}" PreviewTextInput="PortionsTxt_PreviewTextInput" GotFocus="ProductTxt_GotFocus" TextChanged="PortionsTxt_TextChanged"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Grid.Column="4" Margin="0,0,10,0" Grid.ColumnSpan="4" Grid.RowSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="219*"/>
+                    <ColumnDefinition Width="152*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Name="InstructionsHeaderTbk" Text="Preparación:" VerticalAlignment="Center"
+                       FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}" Grid.ColumnSpan="2" Margin="0,2"/>
+                <TextBox Name="InstructionsTxt" Grid.Row="1" VerticalAlignment="Stretch" FontSize="12" TextWrapping="Wrap" AcceptsReturn="True"
+                         Foreground="{DynamicResource RBGrayForeground}" SpellCheck.IsEnabled="True" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2"
+                         GotFocus="ProductTxt_GotFocus"/>
+            </Grid>
+
+            <Grid Grid.Row="4" Grid.Column="4" Margin="0,0,10,0" Grid.ColumnSpan="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Name="NotesHeaderTbk" Text="Notas:" VerticalAlignment="Center"
+                       FontSize="18" FontWeight="Bold" Foreground="{DynamicResource RBGrayForeground}"/>
+                <TextBox Name="NotesTxt" Grid.Row="1" VerticalAlignment="Stretch" FontSize="12" TextWrapping="Wrap" AcceptsReturn="True"
+                         Foreground="{DynamicResource RBGrayForeground}" SpellCheck.IsEnabled="True" VerticalScrollBarVisibility="Auto" Height="Auto"
+                         GotFocus="ProductTxt_GotFocus"/>
+            </Grid>
+
+
+            <TextBlock Name="WarningTbk" Text="Verifique bien los campos" Grid.Row="5"
+                       Grid.ColumnSpan="8" TextAlignment="Center" VerticalAlignment="Center" FontSize="15"
+                       TextWrapping="Wrap" Foreground="#FFB41616" FontWeight="Bold" Visibility="Hidden">
+                <TextBlock.Triggers>
+                    <EventTrigger RoutedEvent="TextBlock.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                            Storyboard.TargetProperty="(TextBlock.Opacity)"
+                                            From="1" To="0" Duration="0:0:0.800" 
+                                            AutoReverse="True" RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </TextBlock.Triggers>
+            </TextBlock>
+
+            <Grid Grid.Row="6" Margin="10,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Name="TotalCostHeaderTbk" Text="Costo Total:" VerticalAlignment="Center" TextAlignment="Center"
+                       FontSize="18" FontWeight="Black" Foreground="#FFBB1010"/>
+                <TextBlock Name="TotalCostTxt" Grid.Row="1" VerticalAlignment="Center" FontSize="20" Text="$0.00" TextAlignment="Center"
+                         FontWeight="Bold" Foreground="#FFFF6464"/>
+            </Grid>
+
+            <Grid Grid.Row="6" Grid.Column="1" Margin="10,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Name="PortionCostHeaderTbk" Text="Costo Plato:" VerticalAlignment="Center" TextAlignment="Center"
+                       FontSize="18" FontWeight="Black" Foreground="#FFBB1010"/>
+                <TextBlock Name="PortionCostTxt" Grid.Row="1" VerticalAlignment="Center" FontSize="20" Text="$0.00" TextAlignment="Center"
+                         FontWeight="Bold" Foreground="#FFFF6464"/>
+            </Grid>
+
+            <Grid Grid.Row="6" Grid.Column="2" Margin="10,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Name="SalePriceHeaderTbk" Text="P. Venta:" VerticalAlignment="Center" TextAlignment="Center"
+                       FontSize="18" FontWeight="Black" Foreground="#FF156E25"/>
+                <TextBlock Name="SalePriceTxt" Grid.Row="1" VerticalAlignment="Center" FontSize="20" Text="$0.00" TextAlignment="Center"
+                         FontWeight="Bold" Foreground="#FF16B22B"/>
+            </Grid>
+
+            <Button Name="SaveBtn" Margin="20,10,20,10" Style="{DynamicResource RBRedRoundCornerButton}"
+                    Grid.Column="5" Grid.Row="6" Grid.ColumnSpan="2" BorderBrush="{x:Null}" Click="SaveBtn_Click">
+                <fa:ImageAwesome Icon="Save" Foreground="White" Margin="8"/>
+            </Button>
+
+            <Button Name="CancelBtn" Margin="20,10,20,10" Style="{DynamicResource RBRedRoundCornerButton}"
+                    Grid.Column="7" Grid.Row="6" BorderBrush="{x:Null}" Click="CancelBtn_Click">
+                <fa:ImageAwesome Icon="Remove" Foreground="White" Margin="8"/>
+            </Button>
+        </Grid>
+    </Border>
+</UserControl>
